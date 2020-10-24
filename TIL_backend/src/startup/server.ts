@@ -1,5 +1,8 @@
 import express, { Express } from 'express'
 import { ISERVER_CONFIG } from './config';
+import { GameController } from "../controllers/game"
+import cors  from 'cors'
+
 
 export class Server {
   private app: Express
@@ -7,12 +10,17 @@ export class Server {
 
   constructor(config: ISERVER_CONFIG) {
     this.config = config
+
+    const gameController = new GameController()
     this.app = express()
+    this.app.use(cors({ origin: '*' }))
     this.app.use(express.json())
+
+    this.app.use(this.config.BASE_PATH, gameController.routes)
   }
 
   runServer() {
-    this.app.listen(this.config.PORT, () => {
+    return this.app.listen(this.config.PORT, () => {
       console.log(`server running in port ${this.config.PORT}`)
     })
   }
