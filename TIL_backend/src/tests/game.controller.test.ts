@@ -2,6 +2,7 @@ import { Server, SERVER_CONFIG } from '../startup'
 import request from 'supertest'
 import * as http from 'http'
 import { validate, v4 as uuidv4 } from 'uuid';
+import { IGame } from "../controllers/game/Models";
 
 
 describe('Game controller tests', () => {
@@ -35,7 +36,7 @@ describe('Game controller tests', () => {
 
   test('should return a saved game when client request a game by id game', async () => {
     const gameId = uuidv4()
-    const gameHistory = {
+    const gameHistory: IGame = {
       id: gameId,
       lastMovementDate: '2020-11-03 14:00:00.000',
       isFinished: false,
@@ -66,7 +67,7 @@ describe('Game controller tests', () => {
 
   test('should return the current game state when client send a player movement', async () => {
     const gameId = uuidv4()
-    const gameHistory = {
+    const gameHistory: IGame = {
       id: gameId,
       lastMovementDate: '2020-11-03 14:00:00.000',
       isFinished: false,
@@ -84,7 +85,7 @@ describe('Game controller tests', () => {
   test('should return the current game state with winner when client send a player movement that wins the game',
     async () => {
       const gameId = uuidv4()
-      const gameHistory = {
+      const gameHistory: IGame = {
         id: gameId,
         lastMovementDate: '2020-11-03 14:00:00.000',
         winner: 'X',
@@ -102,7 +103,7 @@ describe('Game controller tests', () => {
 
   test('should return the current game state with tie when client send a player movement that ties the game',
     async () => {
-      const gameHistory = {
+      const gameHistory: IGame = {
         id: 'gameId',
         lastMovementDate: '2020-11-03 14:00:00.000',
         winner: 'Tie',
