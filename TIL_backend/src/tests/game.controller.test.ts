@@ -1,11 +1,13 @@
-import { Server, SERVER_CONFIG } from '../startup';
+import { Server, SERVER_CONFIG } from '../startup'
 import request from 'supertest'
-import * as http from 'http';
+import * as http from 'http'
+import { validate, v4 as uuidv4 } from 'uuid';
 
 
 describe('Game controller tests', () => {
   let server: Server = new Server(SERVER_CONFIG)
   let app: http.Server
+
 
   beforeAll(() => {
     app = server.runServer()
@@ -25,12 +27,16 @@ describe('Game controller tests', () => {
     const response = await request(app).post('/three-in-line/game').send()
 
     expect(response.status).toBe(200)
-    expect(response.body).toEqual(newGame)
+    expect(response.body.XMovements).toEqual(newGame.XMovements)
+    expect(response.body.OMovements).toEqual(newGame.OMovements)
+    expect(response.body.turn).toEqual(newGame.turn)
+    expect(validate(response.body.id)).toBeTruthy()
   })
 
   test('should return a saved game when client request a game by id game', async () => {
+    const gameId = uuidv4()
     const gameHistory = {
-      id: 'gameId',
+      id: gameId,
       lastMovementDate: '2020-11-03 14:00:00.000',
       isFinished: false,
       XMovements: [],
@@ -38,7 +44,7 @@ describe('Game controller tests', () => {
       turn: 'X'
     }
 
-    const response = await request(app).get('/three-in-line/game/gameId').send()
+    const response = await request(app).get(`/three-in-line/game/${gameId}`).send()
 
     expect(response.status).toBe(200)
     expect(response.body).toEqual(gameHistory)
@@ -59,8 +65,9 @@ describe('Game controller tests', () => {
   })
 
   test('should return the current game state when client send a player movement', async () => {
+    const gameId = uuidv4()
     const gameHistory = {
-      id: 'gameId',
+      id: gameId,
       lastMovementDate: '2020-11-03 14:00:00.000',
       isFinished: false,
       XMovements: [3],
@@ -68,7 +75,7 @@ describe('Game controller tests', () => {
       turn: 'O'
     }
 
-    const response = await request(app).put('/three-in-line/game/gameId').send({ XMovement: 3 })
+    const response = await request(app).put(`/three-in-line/game/${gameId}`).send({ XMovement: 3 })
 
     expect(response.status).toBe(200)
     expect(response.body).toEqual(gameHistory)
@@ -76,8 +83,9 @@ describe('Game controller tests', () => {
 
   test('should return the current game state with winner when client send a player movement that wins the game',
     async () => {
+      const gameId = uuidv4()
       const gameHistory = {
-        id: 'gameId',
+        id: gameId,
         lastMovementDate: '2020-11-03 14:00:00.000',
         winner: 'X',
         isFinished: true,
@@ -86,7 +94,7 @@ describe('Game controller tests', () => {
         turn: 'O'
       }
 
-      const response = await request(app).put('/three-in-line/game/gameId').send({ XMovement: 3 })
+      const response = await request(app).put(`/three-in-line/game/${gameId}`).send({ XMovement: 3 })
 
       expect(response.status).toBe(200)
       expect(response.body).toEqual(gameHistory)
@@ -125,7 +133,8 @@ describe('Game controller tests', () => {
   })
 
   test('should return a bad request error when client send an invalid player movement', async () => {
-    const response = await request(app).put('/three-in-line/game/gameId').send({ movement: 3 })
+    const gameId = uuidv4()
+    const response = await request(app).put(`/three-in-line/game/${gameId}`).send({ movement: 3 })
 
     expect(response.status).toBe(400)
     expect(response.text).toContain('El cuerpo de la petición no tiene el formato correcto')

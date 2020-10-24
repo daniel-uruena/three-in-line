@@ -1,5 +1,7 @@
-import {Router, Request, Response, NextFunction} from 'express'
-import { IGame } from './Models/Game';
+import { Router, Request, Response } from 'express'
+import { IGame } from './Models'
+import { v4 as uuidv4, validate } from 'uuid'
+
 
 export class GameController {
 
@@ -16,6 +18,7 @@ export class GameController {
 
   createGame(req: Request, res: Response) {
     const newGame: IGame = {
+      id: uuidv4(),
       XMovements: [],
       OMovements: [],
       turn: 'X'
@@ -29,11 +32,11 @@ export class GameController {
     if (gameId === 'gameIdFake') {
       res.status(404).json('No existe un juego con el id recibido')
     }
-    if (gameId === 'gameIdInvalid') {
+    if (!validate(gameId)) {
       res.status(400).json('El id del juego no tiene un formato válido')
     }
     const game: IGame = {
-      id: 'gameId',
+      id: gameId,
       lastMovementDate: '2020-11-03 14:00:00.000',
       isFinished: false,
       XMovements: [],
@@ -49,12 +52,12 @@ export class GameController {
     if (gameId === 'gameIdFake') {
       res.status(404).json('No existe un juego con el id recibido')
     }
-    if (gameId === 'gameIdInvalid') {
+    if (!validate(gameId)) {
       res.status(400).json('El id del juego no tiene un formato válido')
     }
     const { XMovement, OMovement } = req.body
     const game: IGame = {
-      id: 'gameId',
+      id: gameId,
       lastMovementDate: '2020-11-03 14:00:00.000',
       isFinished: false,
       XMovements: [],
