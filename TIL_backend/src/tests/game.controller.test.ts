@@ -1,7 +1,6 @@
 import { Server, SERVER_CONFIG } from '../startup';
 import request from 'supertest'
-import * as http from "http";
-import exp from "constants";
+import * as http from 'http';
 
 
 describe('Game controller tests', () => {
@@ -53,7 +52,7 @@ describe('Game controller tests', () => {
   })
 
   test('should return a bad request error when client request a game by invalid id', async () => {
-    const response = await request(app).get('/three-in-line/game/gameIdFake').send()
+    const response = await request(app).get('/three-in-line/game/gameIdInvalid').send()
 
     expect(response.status).toBe(400)
     expect(response.text).toContain('El id del juego no tiene un formato válido')
@@ -119,14 +118,14 @@ describe('Game controller tests', () => {
   })
 
   test('should return a bad request error when client send an invalid gameId', async () => {
-    const response = await request(app).put('/three-in-line/game/gameIdFake').send()
+    const response = await request(app).put('/three-in-line/game/gameIdInvalid').send()
 
     expect(response.status).toBe(400)
     expect(response.text).toContain('El id del juego no tiene un formato válido')
   })
 
   test('should return a bad request error when client send an invalid player movement', async () => {
-    const response = await request(app).put('/three-in-line/game/gameIdFake').send({ movement: 3 })
+    const response = await request(app).put('/three-in-line/game/gameId').send({ movement: 3 })
 
     expect(response.status).toBe(400)
     expect(response.text).toContain('El cuerpo de la petición no tiene el formato correcto')
