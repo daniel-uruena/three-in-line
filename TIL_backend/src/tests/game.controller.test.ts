@@ -178,7 +178,7 @@ describe('Game controller tests', () => {
         lastMovementDate: '2020-11-03 14:00:00',
         isFinished: false,
         XMovements: [4,5],
-        OMovements: [0,1],
+        OMovements: [1,2],
         turn: 'X'
       }
       const finalGame: IGame = {
@@ -186,8 +186,8 @@ describe('Game controller tests', () => {
         lastMovementDate: '2020-11-03 14:00:00',
         winner: 'X',
         isFinished: true,
-        XMovements: [4,5,3],
-        OMovements: [0,1],
+        XMovements: [4,5,6],
+        OMovements: [1,2],
         turn: 'O'
       }
       req = {
@@ -195,7 +195,7 @@ describe('Game controller tests', () => {
           id: gameId
         },
         body: {
-          XMovement: 3
+          XMovement: 6
         }
       }
       const spyGet = spyOn(service, 'getGame').and.returnValue(Promise.resolve(initialGame))
@@ -222,7 +222,7 @@ describe('Game controller tests', () => {
       const finalGame: IGame = {
         _id: gameId,
         lastMovementDate: '2020-11-03 14:00:00',
-        winner: 'Tie',
+        winner: 'Empate',
         isFinished: true,
         XMovements: [0,1,5,6,7],
         OMovements: [2,3,4,8],

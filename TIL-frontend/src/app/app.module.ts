@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { GameEffects } from './store/Game/game.effects';
 import { gameReducer } from './store/Game/game.reducers';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { gameReducer } from './store/Game/game.reducers';
     HttpClientModule,
     AppRoutingModule,
     StoreModule.forRoot({ GameStore: gameReducer }),
-    EffectsModule.forRoot([GameEffects])
+    EffectsModule.forRoot([GameEffects]),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

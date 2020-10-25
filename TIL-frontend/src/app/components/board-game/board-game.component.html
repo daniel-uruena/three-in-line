@@ -6,22 +6,41 @@
     <div class="players">
       <span>X</span>
       <span>O</span>
+      <h3>Turno: {{ game.turn }}</h3>
     </div>
     <div class="board-game">
       <div class="board">
-        <div></div>
+        <div (click)="setPlayerMovement(1)">
+          <span>{{ board["1"] }}</span>
+        </div>
         <hr class="v1">
-        <div></div>
+        <div (click)="setPlayerMovement(2)">
+          <span>{{ board["2"] }}</span>
+        </div>
         <hr class="v2">
-        <div></div>
+        <div (click)="setPlayerMovement(3)">
+          <span>{{ board["3"] }}</span>
+        </div>
         <hr class="h1">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div (click)="setPlayerMovement(4)">
+          <span>{{ board["4"] }}</span>
+        </div>
+        <div (click)="setPlayerMovement(5)">
+          <span>{{ board["5"] }}</span>
+        </div>
+        <div (click)="setPlayerMovement(6)">
+          <span>{{ board["6"] }}</span>
+        </div>
         <hr class="h2">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div (click)="setPlayerMovement(7)">
+          <span>{{ board["7"] }}</span>
+        </div>
+        <div (click)="setPlayerMovement(8)">
+          <span>{{ board["8"] }}</span>
+        </div>
+        <div (click)="setPlayerMovement(9)">
+          <span>{{ board["9"] }}</span>
+        </div>
       </div>
     </div>
   </div>

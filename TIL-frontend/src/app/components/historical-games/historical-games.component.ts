@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { IGame } from '../../models/Game';
 import { Subscription } from 'rxjs';
@@ -10,7 +10,7 @@ import * as gameActions from '../../store/Game/game.actions';
   templateUrl: './historical-games.component.html',
   styleUrls: ['./historical-games.component.scss']
 })
-export class HistoricalGamesComponent implements OnInit {
+export class HistoricalGamesComponent implements OnInit, OnDestroy {
 
   games: IGame[] = [];
   subscriptions: Subscription;
@@ -29,4 +29,11 @@ export class HistoricalGamesComponent implements OnInit {
       }));
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
+  getGame(gameId: string) {
+    this.store.dispatch(gameActions.getGameAction({ gameId }));
+  }
 }
