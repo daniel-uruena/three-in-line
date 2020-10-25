@@ -1,0 +1,19 @@
+.historical-container {
+  display: grid;
+  grid-template-rows: 80px 1fr;
+
+  .game {
+    display: grid;
+    grid-template: min-content min-content / 2fr 1fr;
+
+    .info {
+      grid-row: 2/3;
+      grid-column: 1/2;
+    }
+
+    button {
+      grid-column: 2/3;
+      grid-row: 1/3;
+    }
+  }
+}
