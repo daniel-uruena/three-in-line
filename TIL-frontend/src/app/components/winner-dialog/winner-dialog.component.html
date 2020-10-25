@@ -1,0 +1,21 @@
+<div>
+  <div *ngIf="winner === 'Empate'">
+    <h1>EMPATE</h1>
+    <br>
+    <fa-icon [icon]="faTimes"></fa-icon>
+    <fa-icon [icon]="faEquals"></fa-icon>
+    <fa-icon [icon]="faCircle"></fa-icon>
+  </div>
+  <div *ngIf="winner === 'X'">
+    <h1>GANADOR</h1>
+    <br>
+    <fa-icon [icon]="faMedal"></fa-icon>
+    <fa-icon [icon]="faTimes"></fa-icon>
+  </div>
+  <div *ngIf="winner === 'O'">
+    <h1>GANADOR</h1>
+    <br>
+    <fa-icon [icon]="faMedal"></fa-icon>
+    <fa-icon [icon]="faCircle"></fa-icon>
+  </div>
+</div>
