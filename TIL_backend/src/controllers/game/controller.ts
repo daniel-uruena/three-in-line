@@ -3,7 +3,7 @@ import { IGame, IGameController, IGameService } from './Models'
 import { validate } from 'uuid'
 import moment from 'moment'
 
-export class GameController implements IGameController{
+export default class GameController implements IGameController{
 
   routes: Router
   service: IGameService
@@ -18,7 +18,7 @@ export class GameController implements IGameController{
     this.routes.put('/game/:id', this.setGameMovement)
   }
 
-  async createGame(req: Request, res: Response) {
+  createGame = async (req: Request, res: Response) => {
     try {
       const newGame: IGame = await this.service.createGame()
 
@@ -29,8 +29,8 @@ export class GameController implements IGameController{
     }
   }
 
-  async getGame(req: Request, res: Response) {
-    try {
+  getGame = async (req: Request, res: Response) => {
+  try {
       const gameId = req.params.id
       if (!validate(gameId)) {
         res.status(400).json('El id del juego no tiene un formato válido')
@@ -49,7 +49,7 @@ export class GameController implements IGameController{
     }
   }
 
-  async setGameMovement(req: Request, res: Response) {
+  setGameMovement = async (req: Request, res: Response) => {
     try {
       const gameId = req.params.id
       if (!validate(gameId)) {
@@ -96,7 +96,7 @@ export class GameController implements IGameController{
     }
   }
 
-  async getHistoricalGames(req: Request, res: Response) {
+  getHistoricalGames = async (req: Request, res: Response) => {
     try {
       const gameHistorical: IGame[] = await this.service.getGames()
 

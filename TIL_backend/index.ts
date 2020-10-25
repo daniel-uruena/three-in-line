@@ -1,5 +1,6 @@
 import { config } from 'dotenv'
-import { Server, SERVER_CONFIG } from './src/startup';
+import { SERVER_CONFIG } from './src/startup/config'
+import Server from './src/startup/server'
 
 config()
 const server = new Server(SERVER_CONFIG)

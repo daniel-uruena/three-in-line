@@ -1,32 +1,34 @@
-import { v4 as uuidv4 } from 'uuid'
 import { IGame, IGameService } from './Models'
+import { IDatabase } from '../../commons/database'
 
-export class GameService implements IGameService {
-  constructor() {
+export default class GameService implements IGameService {
+
+  private database: IDatabase
+
+  constructor(database: IDatabase) {
+    this.database = database
   }
 
   async createGame(): Promise<IGame> {
+    await this.database.connect()
     const newGame: IGame = {
-      id: uuidv4(),
       XMovements: [],
       OMovements: [],
       turn: 'X'
     }
-
-    return newGame
+    const response = await this.database.GameModel.create(newGame)
+    this.database.close()
+    const { _id, XMovements, OMovements, turn } = response._doc
+    return { _id, XMovements, OMovements, turn }
   }
 
   async getGame(gameId: string): Promise<IGame> {
-    const game: IGame = {
-      id: gameId,
-      lastMovementDate: '2020-11-03 14:00:00.000',
-      isFinished: false,
-      XMovements: [],
-      OMovements: [],
-      turn: 'X'
-    }
-
-    return game
+    await this.database.connect()
+    const game = await this.database.GameModel.findById(gameId).exec()
+    const response = game.toObject()
+    this.database.close()
+    response.__v = undefined
+    return response
   }
 
   async updateGame(game: IGame): Promise<IGame> {
@@ -35,7 +37,7 @@ export class GameService implements IGameService {
 
   async getGames(): Promise<IGame[]> {
     const gameHistorical: IGame[] = [{
-      id: 'gameId',
+      _id: 'gameId',
       lastMovementDate: '2020-11-03 14:00:00.000',
       winner: 'X',
       isFinished: true,

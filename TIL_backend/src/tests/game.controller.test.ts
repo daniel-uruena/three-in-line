@@ -1,11 +1,11 @@
 import { v4 as uuidv4 } from 'uuid'
 import { IGame, IGameController, IGameService } from '../controllers/game/Models'
-import { GameController } from '../controllers/game'
+import GameController from '../controllers/game/controller'
 
 class ServiceMock implements IGameService {
   async createGame(): Promise<IGame> {
     return {
-      id: 'gameId',
+      _id: 'gameId',
       XMovements: [],
       OMovements: [],
       turn: 'X'
@@ -14,7 +14,7 @@ class ServiceMock implements IGameService {
 
   async getGame(gameId: string): Promise<IGame> {
     return {
-      id: gameId,
+      _id: gameId,
       lastMovementDate: '2020-11-03 14:00:00',
       isFinished: false,
       XMovements: [],
@@ -29,7 +29,7 @@ class ServiceMock implements IGameService {
 
   async getGames(): Promise<IGame[]> {
     return [{
-      id: 'gameId',
+      _id: 'gameId',
       lastMovementDate: '2020-11-03 14:00:00',
       winner: 'X',
       isFinished: true,
@@ -91,7 +91,7 @@ describe('Game controller tests', () => {
       }
     }
     const gameHistory: IGame = {
-      id: gameId,
+      _id: gameId,
       lastMovementDate: '2020-11-03 14:00:00',
       isFinished: false,
       XMovements: [],
@@ -137,7 +137,7 @@ describe('Game controller tests', () => {
   test('should return the current game state when client send a player movement', async () => {
     const gameId = uuidv4()
     const initialGame: IGame = {
-      id: gameId,
+      _id: gameId,
       lastMovementDate: '2020-11-03 14:00:00',
       isFinished: false,
       XMovements: [],
@@ -145,7 +145,7 @@ describe('Game controller tests', () => {
       turn: 'X'
     }
     const finalGame: IGame = {
-      id: gameId,
+      _id: gameId,
       lastMovementDate: '2020-11-03 14:00:00',
       isFinished: false,
       XMovements: [3],
@@ -174,7 +174,7 @@ describe('Game controller tests', () => {
     async () => {
       const gameId = uuidv4()
       const initialGame: IGame = {
-        id: gameId,
+        _id: gameId,
         lastMovementDate: '2020-11-03 14:00:00',
         isFinished: false,
         XMovements: [4,5],
@@ -182,7 +182,7 @@ describe('Game controller tests', () => {
         turn: 'X'
       }
       const finalGame: IGame = {
-        id: gameId,
+        _id: gameId,
         lastMovementDate: '2020-11-03 14:00:00',
         winner: 'X',
         isFinished: true,
@@ -212,7 +212,7 @@ describe('Game controller tests', () => {
     async () => {
       const gameId = uuidv4()
       const initialGame: IGame = {
-        id: gameId,
+        _id: gameId,
         lastMovementDate: '2020-11-03 14:00:00',
         isFinished: false,
         XMovements: [0,1,5,6],
@@ -220,7 +220,7 @@ describe('Game controller tests', () => {
         turn: 'X'
       }
       const finalGame: IGame = {
-        id: gameId,
+        _id: gameId,
         lastMovementDate: '2020-11-03 14:00:00',
         winner: 'Tie',
         isFinished: true,

@@ -1,5 +1,5 @@
 export interface IGame {
-  id?: string
+  _id?: string
   lastMovementDate?: string
   isFinished?: boolean
   winner?: 'X' | 'O' | 'Tie'

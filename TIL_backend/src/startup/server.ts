@@ -1,17 +1,20 @@
 import express, { Express } from 'express'
 import { ISERVER_CONFIG } from './config';
-import { GameController, GameService } from "../controllers/game"
+import GameController from '../controllers/game/controller'
+import GameService from '../controllers/game/service'
 import cors  from 'cors'
+import MongoDatabase from '../commons/database/MongoDatabase'
 
 
-export class Server {
+export default class Server {
   private app: Express
   private config: ISERVER_CONFIG
 
   constructor(config: ISERVER_CONFIG) {
     this.config = config
 
-    const gameService = new GameService()
+    const mongoDatabase = new MongoDatabase(this.config.MONGO_CONFIG)
+    const gameService = new GameService(mongoDatabase)
     const gameController = new GameController(gameService)
     this.app = express()
     this.app.use(cors({ origin: '*' }))

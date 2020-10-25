@@ -1,8 +1,9 @@
-import { IDatabaseConfig, MongoDatabase } from '../commons/database'
+import { IDATABASECONFIG } from '../commons/database'
 import Mongoose from 'mongoose'
+import MongoDatabase from '../commons/database/MongoDatabase'
 
 describe('Game database tests', () => {
-  const config: IDatabaseConfig = {
+  const config: IDATABASECONFIG = {
     HOST: 'host',
     PORT: 'port',
     DATABASE: 'database',

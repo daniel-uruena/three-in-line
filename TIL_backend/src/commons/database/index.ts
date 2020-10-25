@@ -1,11 +1,6 @@
-export * from './MongoDatabase'
+// export * from './MongoDatabase'
 
-export interface IDatabase {
-  connect(): Promise<any>
-  close(): void
-}
-
-export interface IDatabaseConfig {
+export interface IDATABASECONFIG {
   HOST: string
   PORT: string
   DATABASE: string
@@ -13,4 +8,10 @@ export interface IDatabaseConfig {
   PASSWORD?: string
   COLLECTION_NAME?: string
   TABLE_NAME?: string
+}
+
+export interface IDatabase {
+  connect(): Promise<any>
+  close(): void
+  GameModel: any
 }
