@@ -30,12 +30,12 @@
       justify-items: center;
       align-content: center;
       text-align: center;
-      width: 280px;
-      height: 280px;
+      width: 340px;
+      height: 340px;
 
       div {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
       }
 
       hr {
@@ -44,28 +44,28 @@
 
       hr.v1 {
         width: 20px;
-        height: 280px;
+        height: 100%;
         grid-column: 2/3;
         grid-row: 1/6;
       }
 
       hr.v2 {
         width: 20px;
-        height: 280px;
+        height: 100%;
         grid-column: 4/5;
         grid-row: 1/6;
       }
 
       hr.h1 {
         height: 20px;
-        width: 280px;
+        width: 100%;
         grid-row: 2/3;
         grid-column: 1/6;
       }
 
       hr.h2 {
         height: 20px;
-        width: 280px;
+        width: 100%;
         grid-row: 4/5;
         grid-column: 1/6;
       }
