@@ -3,9 +3,21 @@
   <div class="games">
     <div class="game" *ngFor="let game of games">
       <p class="date">{{ game.lastMovementDate }}</p>
-      <p class="info" *ngIf="game.isFinished">Ganador: {{ game.winner }}</p>
-      <p class="info" *ngIf="!game.isFinished">Turno: {{ game.turn }}</p>
-      <button (click)="getGame(game._id)">Jugar/Ver</button>
+      <p class="info" *ngIf="game.isFinished">
+        <fa-icon [icon]="faMedal"></fa-icon> :
+        <fa-icon [icon]="faTimes" *ngIf="game.winner === 'X'"></fa-icon>
+        <fa-icon [icon]="faCircle" *ngIf="game.winner === 'O'"></fa-icon>
+        <fa-icon [icon]="faEquals" *ngIf="game.winner === 'Empate'"></fa-icon>
+      </p>
+      <p class="info" *ngIf="!game.isFinished">
+        <fa-icon [icon]="faUser"></fa-icon> :
+        <fa-icon [icon]="faTimes" *ngIf="game.turn === 'X'"></fa-icon>
+        <fa-icon [icon]="faCircle" *ngIf="game.turn === 'O'"></fa-icon>
+      </p>
+      <button (click)="getGame(game._id)">
+        <fa-icon [icon]="faEye" *ngIf="game.isFinished"></fa-icon>
+        <fa-icon [icon]="faPlay" *ngIf="!game.isFinished"></fa-icon>
+      </button>
     </div>
   </div>
 </div>

@@ -4,6 +4,8 @@ import { IGame } from '../../models/Game';
 import { Subscription } from 'rxjs';
 import { selectHistoricalGamesState } from '../../store/Game/game.selectors';
 import * as gameActions from '../../store/Game/game.actions';
+import { faPlay, faMedal, faTimes, faEquals, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faCircle } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-historical-games',
@@ -14,6 +16,13 @@ export class HistoricalGamesComponent implements OnInit, OnDestroy {
 
   games: IGame[] = [];
   subscriptions: Subscription;
+  faPlay = faPlay;
+  faEye = faEye;
+  faMedal = faMedal;
+  faTimes = faTimes;
+  faCircle = faCircle;
+  faEquals = faEquals;
+  faUser = faUser;
 
   constructor(private store: Store<{}>) {
     this.subscriptions = new Subscription();

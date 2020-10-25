@@ -5,6 +5,8 @@ import { selectCurrentGameState } from '../../store/Game/game.selectors';
 import { IGame } from '../../models/Game';
 import * as gameActions from '../../store/Game/game.actions';
 import { IPlayerMovement } from '../../models/PlayerMovement';
+import { faPlay, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-board-game',
@@ -15,6 +17,9 @@ export class BoardGameComponent implements OnInit, OnDestroy {
 
   game: IGame;
   subscriptions: Subscription;
+  faPlay = faPlay;
+  faTimes = faTimes;
+  faCircle = faCircle;
   board = {
     1: undefined,
     2: undefined,

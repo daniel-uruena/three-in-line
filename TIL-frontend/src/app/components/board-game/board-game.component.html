@@ -1,45 +1,75 @@
 <div class="board-game-container">
   <div class="new-game">
-    <button (click)="newGame()">Nuevo juego</button>
+    <button (click)="newGame()">Nuevo juego <fa-icon [icon]="faPlay"></fa-icon></button>
   </div>
   <div *ngIf="game">
     <div class="players">
-      <span>X</span>
-      <span>O</span>
-      <h3>Turno: {{ game.turn }}</h3>
+      <span [ngClass]="{ 'isPlaying': game.turn === 'X'}"><fa-icon [icon]="faTimes"></fa-icon></span>
+      <span [ngClass]="{ 'isPlaying': game.turn === 'O'}"><fa-icon [icon]="faCircle"></fa-icon></span>
+      <h3>Turno:
+        <fa-icon [icon]="faTimes" *ngIf="game.turn === 'X'"></fa-icon>
+        <fa-icon [icon]="faCircle" *ngIf="game.turn === 'O'"></fa-icon>
+      </h3>
     </div>
     <div class="board-game">
       <div class="board">
         <div (click)="setPlayerMovement(1)">
-          <span>{{ board["1"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['1'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['1'] === 'O'"></fa-icon>
+          </span>
         </div>
         <hr class="v1">
         <div (click)="setPlayerMovement(2)">
-          <span>{{ board["2"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['2'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['2'] === 'O'"></fa-icon>
+          </span>
         </div>
         <hr class="v2">
         <div (click)="setPlayerMovement(3)">
-          <span>{{ board["3"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['3'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['3'] === 'O'"></fa-icon>
+          </span>
         </div>
         <hr class="h1">
         <div (click)="setPlayerMovement(4)">
-          <span>{{ board["4"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['4'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['4'] === 'O'"></fa-icon>
+          </span>
         </div>
         <div (click)="setPlayerMovement(5)">
-          <span>{{ board["5"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['5'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['5'] === 'O'"></fa-icon>
+          </span>
         </div>
         <div (click)="setPlayerMovement(6)">
-          <span>{{ board["6"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['6'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['6'] === 'O'"></fa-icon>
+          </span>
         </div>
         <hr class="h2">
         <div (click)="setPlayerMovement(7)">
-          <span>{{ board["7"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['7'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['7'] === 'O'"></fa-icon>
+          </span>
         </div>
         <div (click)="setPlayerMovement(8)">
-          <span>{{ board["8"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['8'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['8'] === 'O'"></fa-icon>
+          </span>
         </div>
         <div (click)="setPlayerMovement(9)">
-          <span>{{ board["9"] }}</span>
+          <span>
+            <fa-icon [icon]="faTimes" *ngIf="board['9'] === 'X'"></fa-icon>
+            <fa-icon [icon]="faCircle" *ngIf="board['9'] === 'O'"></fa-icon>
+          </span>
         </div>
       </div>
     </div>
