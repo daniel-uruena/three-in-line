@@ -18,7 +18,7 @@ export class GameEffects {
           this.store.dispatch(gameActions.creationFailAction());
         });
     })
-  ));
+  ), { dispatch: false });
 
   getHistoricalGames$ = createEffect(() => this.action$.pipe(
     ofType(gameActions.getHistoricalGamesAction),
@@ -31,7 +31,7 @@ export class GameEffects {
           this.store.dispatch(gameActions.historicalGamesFailAction());
         });
     })
-  ));
+  ), { dispatch: false });
 
   setPlayerMovement$ = createEffect(() => this.action$.pipe(
     ofType(gameActions.setPlayerMovementAction),
@@ -44,7 +44,7 @@ export class GameEffects {
           this.store.dispatch(gameActions.playerMovementFailAction());
         });
     })
-  ));
+  ), { dispatch: false });
 
   getGame$ = createEffect(() => this.action$.pipe(
     ofType(gameActions.getGameAction),
@@ -57,7 +57,7 @@ export class GameEffects {
           this.store.dispatch(gameActions.gameLoadFailAction());
         });
     })
-  ));
+  ), { dispatch: false });
 
   constructor(private action$: Actions,
               private store: Store<{}>,

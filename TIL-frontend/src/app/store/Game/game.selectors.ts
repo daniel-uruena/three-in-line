@@ -1,12 +1,12 @@
-import { AppState } from '../index';
 import { GameState } from './game.reducers';
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-export interface State extends AppState {
+export interface State {
   gameState: GameState;
 }
 
-export const selectFeature = (state: State) => state.gameState;
+export const selectFeature = createFeatureSelector<GameState>('GameStore');
+
 
 export const selectCurrentGameState = createSelector(selectFeature, (state) => state.game);
 export const selectHistoricalGamesState = createSelector(selectFeature, (state) => state.historicalGames);

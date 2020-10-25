@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URL_API: 'http://localhost:8080/game'
+  URL_API: 'http://localhost:8080/three-in-line/game'
 };
 
 /*
