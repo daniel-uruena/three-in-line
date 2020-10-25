@@ -185,6 +185,7 @@ describe('Game controller tests', () => {
         _id: gameId,
         lastMovementDate: '2020-11-03 14:00:00',
         winner: 'X',
+        winnerLine: [4,5,6],
         isFinished: true,
         XMovements: [4,5,6],
         OMovements: [1,2],

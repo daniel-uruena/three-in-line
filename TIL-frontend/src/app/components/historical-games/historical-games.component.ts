@@ -6,6 +6,8 @@ import { selectHistoricalGamesState } from '../../store/Game/game.selectors';
 import * as gameActions from '../../store/Game/game.actions';
 import { faPlay, faMedal, faTimes, faEquals, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faEye, faCircle } from '@fortawesome/free-regular-svg-icons';
+import { registerLocaleData } from '@angular/common';
+import localeEsCo from '@angular/common/locales/es-CO';
 
 @Component({
   selector: 'app-historical-games',
@@ -25,6 +27,7 @@ export class HistoricalGamesComponent implements OnInit, OnDestroy {
   faUser = faUser;
 
   constructor(private store: Store<{}>) {
+    registerLocaleData(localeEsCo);
     this.subscriptions = new Subscription();
   }
 

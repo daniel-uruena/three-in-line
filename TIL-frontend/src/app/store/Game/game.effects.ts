@@ -4,6 +4,8 @@ import { Store } from '@ngrx/store';
 import { GameService } from '../../services/game.service';
 import * as gameActions from './game.actions';
 import { tap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { WinnerDialogComponent } from '../../components/winner-dialog/winner-dialog.component';
 
 @Injectable()
 export class GameEffects {
@@ -38,11 +40,23 @@ export class GameEffects {
     tap((action) => {
       return this.gameService.setPLayerMovement(action.gameId, action.playerMovement)
         .subscribe(game => {
+          if (game.winner) {
+            this.store.dispatch(gameActions.showModalWinnerAction({ winner: game.winner }));
+          }
           this.store.dispatch(gameActions.playerMovementSuccessAction({ game }));
         }, error => {
           console.log(error);
           this.store.dispatch(gameActions.playerMovementFailAction());
         });
+    })
+  ), { dispatch: false });
+
+  showModalWinner$ = createEffect(() => this.action$.pipe(
+    ofType(gameActions.showModalWinnerAction),
+    tap((action) => {
+      this.dialog.open(WinnerDialogComponent, {
+        data: action.winner
+      });
     })
   ), { dispatch: false });
 
@@ -61,6 +75,7 @@ export class GameEffects {
 
   constructor(private action$: Actions,
               private store: Store<{}>,
-              private gameService: GameService) {
+              private gameService: GameService,
+              private dialog: MatDialog) {
   }
 }

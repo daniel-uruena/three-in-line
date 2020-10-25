@@ -15,6 +15,7 @@ export const historicalGamesFailAction = createAction('[GAME]Request of historic
 // Players movements actions
 export const setPlayerMovementAction = createAction('[GAME]Set player movement',
   props<{ gameId: string, playerMovement: IPlayerMovement }>());
+export const showModalWinnerAction = createAction('[GAME]Show modal of winner', props<{ winner: string }>());
 export const playerMovementSuccessAction = createAction('[GAME]Player movement success', props<{ game: IGame }>());
 export const playerMovementFailAction = createAction('[GAME]Player movement did fail');
 

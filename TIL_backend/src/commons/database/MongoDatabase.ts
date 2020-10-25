@@ -15,6 +15,7 @@ export default class MongoDatabase implements IDatabase {
       lastMovementDate: String,
       isFinished: Boolean,
       winner: String,
+      winnerLine: [Number],
       XMovements: [Number],
       OMovements: [Number],
       turn: String

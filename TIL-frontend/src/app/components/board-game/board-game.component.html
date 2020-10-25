@@ -13,59 +13,59 @@
     </div>
     <div class="board-game">
       <div class="board">
-        <div (click)="setPlayerMovement(1)">
+        <div (click)="setPlayerMovement(1)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(1)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['1'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['1'] === 'O'"></fa-icon>
           </span>
         </div>
         <hr class="v1">
-        <div (click)="setPlayerMovement(2)">
+        <div (click)="setPlayerMovement(2)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(2)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['2'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['2'] === 'O'"></fa-icon>
           </span>
         </div>
         <hr class="v2">
-        <div (click)="setPlayerMovement(3)">
+        <div (click)="setPlayerMovement(3)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(3)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['3'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['3'] === 'O'"></fa-icon>
           </span>
         </div>
         <hr class="h1">
-        <div (click)="setPlayerMovement(4)">
+        <div (click)="setPlayerMovement(4)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(4)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['4'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['4'] === 'O'"></fa-icon>
           </span>
         </div>
-        <div (click)="setPlayerMovement(5)">
+        <div (click)="setPlayerMovement(5)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(5)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['5'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['5'] === 'O'"></fa-icon>
           </span>
         </div>
-        <div (click)="setPlayerMovement(6)">
+        <div (click)="setPlayerMovement(6)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(6)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['6'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['6'] === 'O'"></fa-icon>
           </span>
         </div>
         <hr class="h2">
-        <div (click)="setPlayerMovement(7)">
+        <div (click)="setPlayerMovement(7)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(7)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['7'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['7'] === 'O'"></fa-icon>
           </span>
         </div>
-        <div (click)="setPlayerMovement(8)">
+        <div (click)="setPlayerMovement(8)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(8)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['8'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['8'] === 'O'"></fa-icon>
           </span>
         </div>
-        <div (click)="setPlayerMovement(9)">
+        <div (click)="setPlayerMovement(9)" [ngClass]="{'winnerCell': game.winnerLine && game.winnerLine.includes(9)}">
           <span>
             <fa-icon [icon]="faTimes" *ngIf="board['9'] === 'X'"></fa-icon>
             <fa-icon [icon]="faCircle" *ngIf="board['9'] === 'O'"></fa-icon>

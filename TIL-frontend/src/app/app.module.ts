@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,12 +11,19 @@ import { EffectsModule } from '@ngrx/effects';
 import { GameEffects } from './store/Game/game.effects';
 import { gameReducer } from './store/Game/game.reducers';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import localeEsCo from '@angular/common/locales/es-CO';
+import { registerLocaleData } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WinnerDialogComponent } from './components/winner-dialog/winner-dialog.component';
+
+registerLocaleData(localeEsCo, 'es-CO');
 
 @NgModule({
   declarations: [
     AppComponent,
     HistoricalGamesComponent,
-    BoardGameComponent
+    BoardGameComponent,
+    WinnerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +31,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     StoreModule.forRoot({ GameStore: gameReducer }),
     EffectsModule.forRoot([GameEffects]),
-    FontAwesomeModule
+    FontAwesomeModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

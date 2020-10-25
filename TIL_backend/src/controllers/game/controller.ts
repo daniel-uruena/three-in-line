@@ -124,6 +124,7 @@ export default class GameController implements IGameController{
         game.XMovements.includes(cell) : game.OMovements.includes(cell))) {
         game.winner = currentPlayer
         game.isFinished = true
+        game.winnerLine = winnerLine;
       }
     })
     if (!game.winner && game.XMovements.length + game.OMovements.length === 9) {

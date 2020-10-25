@@ -2,7 +2,7 @@
   <h2>Historial de partidas</h2>
   <div class="games">
     <div class="game" *ngFor="let game of games">
-      <p class="date">{{ game.lastMovementDate }}</p>
+      <p class="date">{{ game.lastMovementDate | date:'medium' }}</p>
       <p class="info" *ngIf="game.isFinished">
         <fa-icon [icon]="faMedal"></fa-icon> :
         <fa-icon [icon]="faTimes" *ngIf="game.winner === 'X'"></fa-icon>
