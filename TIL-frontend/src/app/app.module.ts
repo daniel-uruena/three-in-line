@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { HistoricalGamesComponent } from './components/historical-games/historical-games.component';
 import { BoardGameComponent } from './components/board-game/board-game.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { appReducers, metaReducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,11 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    StoreModule.forRoot(appReducers, {
+      metaReducers
+    }),
+    EffectsModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]
