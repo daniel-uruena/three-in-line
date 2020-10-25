@@ -1,7 +1,12 @@
 .board-game-container {
-  display: grid;
-  grid-template-rows: min-content min-content;
-  gap: 20px;
+
+  .new-game {
+    width: 100%;
+    padding: 20px 0;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+  }
 
   .players {
     display: grid;

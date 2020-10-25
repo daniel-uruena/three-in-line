@@ -1,23 +1,28 @@
 <div class="board-game-container">
-  <div class="players">
-    <span>X</span>
-    <span>O</span>
+  <div class="new-game">
+    <button (click)="newGame()">Nuevo juego</button>
   </div>
-  <div class="board-game">
-    <div class="board">
-      <div></div>
-      <hr class="v1">
-      <div></div>
-      <hr class="v2">
-      <div></div>
-      <hr class="h1">
-      <div></div>
-      <div></div>
-      <div></div>
-      <hr class="h2">
-      <div></div>
-      <div></div>
-      <div></div>
+  <div *ngIf="game">
+    <div class="players">
+      <span>X</span>
+      <span>O</span>
+    </div>
+    <div class="board-game">
+      <div class="board">
+        <div></div>
+        <hr class="v1">
+        <div></div>
+        <hr class="v2">
+        <div></div>
+        <hr class="h1">
+        <div></div>
+        <div></div>
+        <div></div>
+        <hr class="h2">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </div>
 </div>
