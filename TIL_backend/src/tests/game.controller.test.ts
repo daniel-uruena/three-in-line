@@ -64,6 +64,10 @@ describe('Game controller tests', () => {
     }
   })
 
+  afterAll(() => {
+    global.Date.now = jest.fn(() => new Date().getTime())
+  })
+
   test('should return a new game object when new game endpoint is called', async () => {
     const newGame = {
       id: uuidv4(),

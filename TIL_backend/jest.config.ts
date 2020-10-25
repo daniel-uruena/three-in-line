@@ -9,6 +9,7 @@ const config: Config.InitialOptions = {
   ],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest'
-  }
+  },
+  testEnvironment: 'node'
 };
 export default config;
