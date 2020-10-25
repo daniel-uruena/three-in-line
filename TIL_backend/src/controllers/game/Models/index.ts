@@ -12,7 +12,7 @@ export interface IGameController {
 
 export interface IGameService {
   createGame(): Promise<IGame>,
-  getGame(gameId: string): Promise<IGame>
-  updateGame(game: IGame): Promise<IGame>
+  getGame(gameId: string): Promise<IGame | undefined>
+  updateGame(game: IGame): void
   getGames(): Promise<IGame[]>
 }

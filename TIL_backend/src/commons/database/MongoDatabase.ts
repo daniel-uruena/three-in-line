@@ -18,7 +18,7 @@ export default class MongoDatabase implements IDatabase {
       XMovements: [Number],
       OMovements: [Number],
       turn: String
-    })
+    }, { versionKey: false })
     this.GameModel = Mongoose.model('Game', gameSchema)
   }
 

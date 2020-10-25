@@ -13,7 +13,9 @@ class DatabaseMock implements IDatabase {
 
   GameModel = {
     create: jest.fn(),
-    findById: () => ({ exec: jest.fn() })
+    findById: () => ({ exec: jest.fn() }),
+    update: jest.fn(),
+    find: jest.fn()
   }
 
 }
@@ -61,8 +63,19 @@ describe('Game service tests', () => {
     const result = await service.getGame(gameId)
 
     expect(result).toEqual(gameHistory)
-    expect(result._id).toEqual(gameId)
+    expect(result ? result._id : '').toEqual(gameId)
     expect(spy).toHaveBeenCalledWith(gameId)
+  })
+
+  test('should return undefined when the requested game does not exists', async () => {
+    const spy = spyOn(database.GameModel, 'findById').and.returnValue({
+      exec: () => Promise.resolve(null)
+    })
+
+    const result = await service.getGame('gameId')
+
+    expect(result).toBeUndefined()
+    expect(spy).toHaveBeenCalledWith('gameId')
   })
 
   test('should update current game when updateGame function is called', async () => {
@@ -75,10 +88,11 @@ describe('Game service tests', () => {
       OMovements: [],
       turn: 'O'
     }
+    const spy = spyOn(database.GameModel, 'update')
 
-    const result = await service.updateGame(game)
+    await service.updateGame(game)
 
-    expect(result).toEqual(game)
+    expect(spy).toHaveBeenCalledWith({ _id: gameId }, game)
   })
 
   test('should get historical of games when getGames function is called', async () => {
@@ -91,9 +105,22 @@ describe('Game service tests', () => {
       OMovements: [0,1],
       turn: 'O'
     }]
+    const findResponse = [{
+      toObject: () => ({
+        _id: 'gameId',
+        lastMovementDate: '2020-11-03 14:00:00.000',
+        winner: 'X',
+        isFinished: true,
+        XMovements: [4,5,3],
+        OMovements: [0,1],
+        turn: 'O'
+      })
+    }]
+    const spy = spyOn(database.GameModel, 'find').and.returnValue(Promise.resolve(findResponse))
 
     const result = await service.getGames()
 
     expect(result).toEqual(gameHistorical)
+    expect(spy).toHaveBeenCalled()
   })
 })

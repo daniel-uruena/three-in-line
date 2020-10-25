@@ -2,6 +2,7 @@ import { Router, Request, Response } from 'express'
 import { IGame, IGameController, IGameService } from './Models'
 import { validate } from 'uuid'
 import moment from 'moment'
+import { DATE_FORMAT } from "../../commons/utils/constants";
 
 export default class GameController implements IGameController{
 
@@ -36,7 +37,7 @@ export default class GameController implements IGameController{
         res.status(400).json('El id del juego no tiene un formato válido')
       }
 
-      const game: IGame = await this.service.getGame(gameId)
+      const game = await this.service.getGame(gameId)
 
       if (!game) {
         res.status(404).json('No existe un juego con el id recibido')
@@ -63,7 +64,7 @@ export default class GameController implements IGameController{
         return
       }
 
-      let game: IGame = await this.service.getGame(gameId)
+      let game = await this.service.getGame(gameId)
 
       if (!game) {
         res.status(404).json('No existe un juego con el id recibido')
@@ -84,10 +85,10 @@ export default class GameController implements IGameController{
         game.turn = 'X'
         currentPlayer = 'O'
       }
-      game.lastMovementDate = moment().format('YYYY-MM-DD HH:mm:ss')
+      game.lastMovementDate = moment().format(DATE_FORMAT)
       this.validateWinner(game, currentPlayer)
 
-      game = await this.service.updateGame(game)
+      await this.service.updateGame(game)
 
       res.json(game)
     } catch (error) {

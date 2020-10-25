@@ -1,5 +1,7 @@
 import { IGame, IGameService } from './Models'
 import { IDatabase } from '../../commons/database'
+import { DATE_FORMAT } from '../../commons/utils/constants'
+import moment from 'moment'
 
 export default class GameService implements IGameService {
 
@@ -7,45 +9,35 @@ export default class GameService implements IGameService {
 
   constructor(database: IDatabase) {
     this.database = database
+    this.database.connect()
   }
 
   async createGame(): Promise<IGame> {
-    await this.database.connect()
     const newGame: IGame = {
+      lastMovementDate: moment().format(DATE_FORMAT),
       XMovements: [],
       OMovements: [],
       turn: 'X'
     }
     const response = await this.database.GameModel.create(newGame)
-    this.database.close()
-    const { _id, XMovements, OMovements, turn } = response._doc
-    return { _id, XMovements, OMovements, turn }
+    return response._doc
   }
 
-  async getGame(gameId: string): Promise<IGame> {
-    await this.database.connect()
+  async getGame(gameId: string): Promise<IGame | undefined> {
     const game = await this.database.GameModel.findById(gameId).exec()
-    const response = game.toObject()
-    this.database.close()
-    response.__v = undefined
-    return response
+    if (game) {
+      return game.toObject()
+    }
+    return undefined
   }
 
-  async updateGame(game: IGame): Promise<IGame> {
-    return game
+  async updateGame(game: IGame) {
+    await this.database.GameModel.update({ _id: game._id }, game)
   }
 
   async getGames(): Promise<IGame[]> {
-    const gameHistorical: IGame[] = [{
-      _id: 'gameId',
-      lastMovementDate: '2020-11-03 14:00:00.000',
-      winner: 'X',
-      isFinished: true,
-      XMovements: [4,5,3],
-      OMovements: [0,1],
-      turn: 'O'
-    }]
+    const gameHistorical = await this.database.GameModel.find()
 
-    return gameHistorical
+    return gameHistorical.map((doc: any) => doc.toObject())
   }
 }
