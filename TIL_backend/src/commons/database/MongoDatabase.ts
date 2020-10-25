@@ -9,7 +9,11 @@ export default class MongoDatabase implements IDatabase {
   GameModel: Model<Mongoose.Document>
 
   constructor(config: IDATABASECONFIG) {
-    this.connectionString = `mongodb://${config.HOST}:${config.PORT}/${config.DATABASE}`
+    if (config.USER && config.PASSWORD) {
+      this.connectionString = `mongodb://${config.USER}:${config.PASSWORD}@${config.HOST}:${config.PORT}/${config.DATABASE}`
+    } else {
+      this.connectionString = `mongodb://${config.HOST}:${config.PORT}/${config.DATABASE}`
+    }
     const gameSchema = new Mongoose.Schema({
       _id: { type: String, default: () => uuidv4() },
       lastMovementDate: String,

@@ -6,6 +6,7 @@ import * as gameActions from './game.actions';
 import { tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { WinnerDialogComponent } from '../../components/winner-dialog/winner-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class GameEffects {
@@ -17,7 +18,7 @@ export class GameEffects {
           this.store.dispatch(gameActions.gameCreatedAction({ game }));
         }, error => {
           console.error(error);
-          this.store.dispatch(gameActions.creationFailAction());
+          this.store.dispatch(gameActions.requestFailAction(error));
         });
     })
   ), { dispatch: false });
@@ -30,7 +31,7 @@ export class GameEffects {
           this.store.dispatch(gameActions.historicalGamesLoadedAction({ historicalGames: games }));
         }, error => {
           console.error(error);
-          this.store.dispatch(gameActions.historicalGamesFailAction());
+          this.store.dispatch(gameActions.requestFailAction(error));
         });
     })
   ), { dispatch: false });
@@ -46,7 +47,7 @@ export class GameEffects {
           this.store.dispatch(gameActions.playerMovementSuccessAction({ game }));
         }, error => {
           console.log(error);
-          this.store.dispatch(gameActions.playerMovementFailAction());
+          this.store.dispatch(gameActions.requestFailAction(error));
         });
     })
   ), { dispatch: false });
@@ -68,14 +69,22 @@ export class GameEffects {
           this.store.dispatch(gameActions.gameLoadedAction({ game }));
         }, error => {
           console.log(error);
-          this.store.dispatch(gameActions.gameLoadFailAction());
+          this.store.dispatch(gameActions.requestFailAction(error));
         });
+    })
+  ), { dispatch: false });
+
+  requestFail$ = createEffect(() => this.action$.pipe(
+    ofType(gameActions.requestFailAction),
+    tap( (action) => {
+      this.snackBar.open(action.error.message);
     })
   ), { dispatch: false });
 
   constructor(private action$: Actions,
               private store: Store<{}>,
               private gameService: GameService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {
   }
 }

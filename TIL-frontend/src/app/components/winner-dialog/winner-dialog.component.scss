@@ -1,0 +1,16 @@
+.winner-message {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  font-size: 24pt;
+  text-align: center;
+  padding: 30px;
+
+  .icons {
+    color: #14bcab;
+    font-size: 220pt;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 70px;
+  }
+}

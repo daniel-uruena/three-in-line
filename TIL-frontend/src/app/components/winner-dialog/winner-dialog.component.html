@@ -1,21 +1,27 @@
 <div>
-  <div *ngIf="winner === 'Empate'">
+  <div class="winner-message" *ngIf="winner === 'Empate'">
     <h1>EMPATE</h1>
-    <br>
-    <fa-icon [icon]="faTimes"></fa-icon>
-    <fa-icon [icon]="faEquals"></fa-icon>
-    <fa-icon [icon]="faCircle"></fa-icon>
+    <div class="icons">
+      <fa-icon [icon]="faTimes"></fa-icon>
+      <fa-icon [icon]="faEquals"></fa-icon>
+      <fa-icon [icon]="faCircle"></fa-icon>
+    </div>
+
   </div>
-  <div *ngIf="winner === 'X'">
+  <div class="winner-message" *ngIf="winner === 'X'">
     <h1>GANADOR</h1>
-    <br>
-    <fa-icon [icon]="faMedal"></fa-icon>
-    <fa-icon [icon]="faTimes"></fa-icon>
+    <div class="icons">
+      <fa-icon [icon]="faMedal"></fa-icon>
+      <fa-icon [icon]="faTimes"></fa-icon>
+    </div>
+
   </div>
-  <div *ngIf="winner === 'O'">
+  <div class="winner-message" *ngIf="winner === 'O'">
     <h1>GANADOR</h1>
-    <br>
-    <fa-icon [icon]="faMedal"></fa-icon>
-    <fa-icon [icon]="faCircle"></fa-icon>
+    <div class="icons">
+      <fa-icon [icon]="faMedal"></fa-icon>
+      <fa-icon [icon]="faCircle"></fa-icon>
+    </div>
+
   </div>
 </div>

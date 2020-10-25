@@ -15,6 +15,8 @@ import localeEsCo from '@angular/common/locales/es-CO';
 import { registerLocaleData } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WinnerDialogComponent } from './components/winner-dialog/winner-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 registerLocaleData(localeEsCo, 'es-CO');
 
@@ -32,7 +34,9 @@ registerLocaleData(localeEsCo, 'es-CO');
     StoreModule.forRoot({ GameStore: gameReducer }),
     EffectsModule.forRoot([GameEffects]),
     FontAwesomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'es-CO' }],
   bootstrap: [AppComponent]

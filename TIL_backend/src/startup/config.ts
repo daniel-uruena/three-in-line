@@ -14,6 +14,8 @@ export const SERVER_CONFIG: ISERVER_CONFIG = {
   MONGO_CONFIG: {
     HOST: process.env.MONGO_HOST || 'localhost',
     PORT: process.env.MONGO_PORT || '27017',
-    DATABASE: process.env.MONGO_DATABASE || 'three-in-line'
+    DATABASE: process.env.MONGO_DATABASE || 'three-in-line',
+    USER: process.env.MONGO_USER || undefined,
+    PASSWORD: process.env.MONGO_PASSWORD || undefined
   }
 }
