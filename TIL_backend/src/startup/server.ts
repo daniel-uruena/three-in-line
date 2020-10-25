@@ -1,6 +1,6 @@
 import express, { Express } from 'express'
 import { ISERVER_CONFIG } from './config';
-import { GameController } from "../controllers/game"
+import { GameController, GameService } from "../controllers/game"
 import cors  from 'cors'
 
 
@@ -11,7 +11,8 @@ export class Server {
   constructor(config: ISERVER_CONFIG) {
     this.config = config
 
-    const gameController = new GameController()
+    const gameService = new GameService()
+    const gameController = new GameController(gameService)
     this.app = express()
     this.app.use(cors({ origin: '*' }))
     this.app.use(express.json())

@@ -12,12 +12,12 @@ describe('Game service tests', () => {
       turn: 'X'
     }
 
-    const result = await service.createGame()
+    const result: IGame = await service.createGame()
 
     expect(result.XMovements).toEqual(newGame.XMovements)
     expect(result.OMovements).toEqual(newGame.OMovements)
     expect(result.turn).toEqual(newGame.turn)
-    expect(validate(result.id)).toBeTruthy()
+    expect(validate(result.id || '')).toBeTruthy()
   })
 
   test('should get a saved game by id when getGame function is called', async () => {
@@ -38,7 +38,7 @@ describe('Game service tests', () => {
 
   test('should update current game when updateGame function is called', async () => {
     const gameId = uuidv4()
-    const gameHistory: IGame = {
+    const game: IGame = {
       id: gameId,
       lastMovementDate: '2020-11-03 14:00:00.000',
       isFinished: false,
@@ -47,9 +47,9 @@ describe('Game service tests', () => {
       turn: 'O'
     }
 
-    const result = await service.updateGame(gameId)
+    const result = await service.updateGame(game)
 
-    expect(result).toEqual(gameHistory)
+    expect(result).toEqual(game)
   })
 
   test('should get historical of games when getGames function is called', async () => {
