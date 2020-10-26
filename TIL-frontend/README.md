@@ -11,6 +11,8 @@ Aplicación web que permite jugar a 3 en línea apoyandose en el consumo del API
 
 1. Instalar las dependencias de la aplicación con el comando `npm install`
 2. Ejecutar la aplicación del backend cuya documentación se encuentra en su directorio `TIL_backend`
+3. Ajustar la ruta de consumo del API en la variable `URL_API` del archivo `environment` de acuerdo
+a la ejecución del servidor backend.
 3. Ejecutar la aplicación con el comando `npm start` o `ng serve -o`
 
 ## Compilación
