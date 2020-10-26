@@ -77,7 +77,7 @@ export class GameEffects {
   requestFail$ = createEffect(() => this.action$.pipe(
     ofType(gameActions.requestFailAction),
     tap( (action) => {
-      this.snackBar.open(action.error.message);
+      this.snackBar.open(action.error, 'cerrar', { duration: 5000 });
     })
   ), { dispatch: false });
 

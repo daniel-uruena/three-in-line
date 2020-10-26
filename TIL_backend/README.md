@@ -6,7 +6,7 @@ Esta aplicación contiene los endpoints necesarios para administrar la funcional
 - **Requisitos:**
     - NodeJS versión 10+
     - Base de datos MongoDB (ya sea instalada en la máquina local o virtualizada con docker)
-        - Si se desea instalar mediante docker se puede utilizar el siquiente comando `docker run -d -p 27017:27018 --name mongodb mongo`
+        - Si se desea instalar mediante docker se puede utilizar el siquiente comando `docker run -d -p 27017:27017 --name mongodb mongo`
     
 - **Pasos**:
 1. Crear un archivo llamado `.env` en la carpeta principal de la aplicación backend (TIL_backend) con la siguiente información acorde a su instalación de la base de datos:
