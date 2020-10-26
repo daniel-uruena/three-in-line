@@ -9,10 +9,10 @@ archivos **README.md** ([backend](https://github.com/daniel-uruena/three-in-line
 
 Estas son algunas capturas del juego finalizado:
 
-(1)[https://github.com/daniel-uruena/three-in-line/blob/main/images/1.png]
+![1](https://github.com/daniel-uruena/three-in-line/blob/main/images/1.png)
 
-(2)[https://github.com/daniel-uruena/three-in-line/blob/main/images/2.png]
+![2](https://github.com/daniel-uruena/three-in-line/blob/main/images/2.png)
 
-(3)[https://github.com/daniel-uruena/three-in-line/blob/main/images/3.png]
+![3](https://github.com/daniel-uruena/three-in-line/blob/main/images/3.png)
 
-(4)[https://github.com/daniel-uruena/three-in-line/blob/main/images/4.png]
+![4](https://github.com/daniel-uruena/three-in-line/blob/main/images/4.png)
